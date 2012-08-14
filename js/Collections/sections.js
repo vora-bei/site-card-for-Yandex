@@ -2,9 +2,9 @@
  * Created with JetBrains PhpStorm.
  * User: Администратор
  * Date: 14.08.12
- * Time: 23:43
+ * Time: 23:45
  * To change this template use File | Settings | File Templates.
  */
-app.Views.mainApp=Backbone.View.extend({
+app.Collections.section=Backbone.Collection.extend({
 
 });

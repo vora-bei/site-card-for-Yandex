@@ -5,3 +5,10 @@
  * Time: 23:47
  * To change this template use File | Settings | File Templates.
  */
+var app={
+            Models: {},
+            Collections: {},
+            Roters: {},
+            Views: {}
+
+        }

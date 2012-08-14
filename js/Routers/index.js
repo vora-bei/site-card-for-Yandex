@@ -5,7 +5,7 @@
  * Time: 22:56
  * To change this template use File | Settings | File Templates.
  */
-var index = Backbone.Router.extend({
+app.Routers.index = Backbone.Router.extend({
 
     initialize: function(){
         this.app = new Backbone.View.mainApp();
