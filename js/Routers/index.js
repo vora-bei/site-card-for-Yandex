@@ -8,7 +8,7 @@
 app.Routers.index = Backbone.Router.extend({
 
     initialize: function(){
-        this.app = new Backbone.View.mainApp();
+        this.app = new app.Views.mainApp();
     },
 
     routes: {
@@ -16,11 +16,7 @@ app.Routers.index = Backbone.Router.extend({
         "resume/":        "resume",
         "resume/:section/p:subsection": "resume",
         "": "resume"   // #search/kiwis/p7
-    },
-
-    help: function() {
-
-    },
+        },
 
     resume: function(section, subsection) {
         section= section?section:0;

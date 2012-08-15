@@ -8,7 +8,11 @@
 var app={
             Models: {},
             Collections: {},
-            Roters: {},
+            Routers: {},
             Views: {}
 
         }
+$(document).ready(function(){
+    new app.Routers.index();
+    Backbone.history.start()
+})

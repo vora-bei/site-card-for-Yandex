@@ -32,7 +32,7 @@ input {
 /* Header
 -----------------------------------------------------------------------------*/
 #header {
-	height: 150px;
+	height: 100px;
 	background: #FFE680;
 }
 
@@ -56,10 +56,12 @@ input {
 	float: left;
 	overflow: hidden;
 }
-#content {
-	padding: 0 270px 0 270px;
+.content {
+	padding: 0 0 0 270px;
 }
+.section {
 
+}
 
 /* Sidebar Left
 -----------------------------------------------------------------------------*/
@@ -70,18 +72,18 @@ input {
 	position: relative;
 	background: #B5E3FF;
 }
-
-
-/* Sidebar Right
+/* Left Menu
 -----------------------------------------------------------------------------*/
-#sideRight {
-	float: left;
-	margin-right: -3px;
-	width: 250px;
-	margin-left: -250px;
-	position: relative;
-	background: #FFACAA;
+.leftMenu{
+    list-style: none;
 }
+.leftMenu>li:hover{
+    background-color: #FFE680;
+}
+.leftMenu>li:active{
+    background-color: #FFA680;
+}
+
 
 
 /* Footer
