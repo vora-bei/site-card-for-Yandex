@@ -7,14 +7,22 @@
  */
 app.Views.sectionApp=Backbone.View.extend({
 
-        initialize: function(){
-
+        initialize: function(options){
+            this.render();
+            this.model.on('open',this.open,this);
+            this.model.on('close',this.close,this);
         },
         events: function(){
 
         },
+        open : function(){
+            this.$el.slideDown();
+        },
+        close : function(){
+            this.$el.slideUp();
+        },
         render :function(){
-
+            this.$el.hide();
         },
         render_not_item : function(){
 

@@ -11,17 +11,20 @@ app.Views.mainApp=Backbone.View.extend({
         selector : '.section',
         attrs : ['id','name']
     },
+
+    visibleSection: '',//Открытая Section
+
     collectionClass : app.Collections.section,
 
     initialize: function(options){
         this.initCollection()
-        this.render()
+        this.preRender()
     },
 
     //инициализация коллекции
     initCollection: function(){
 
-        this.collection=new this.collectionClass();
+        var collection=this.collection=new this.collectionClass();
 
         //определение параметров необходимых для построения по html элементам, элементов коллекции
         //определение аттрибутов элементов коллекции (id,name)
@@ -31,56 +34,48 @@ app.Views.mainApp=Backbone.View.extend({
 
         //добавление в коллекцию элементов c атрибутами определенными в attrs
         var item;
-        this.$(selector).each(function(num,i){
+        this.$(selector).each(function(i){
              item={}
             _.each(attrs,function(val){
-                 item[val]=$(num).attr(val);
-            },num)
-            this.collection.add(item)
-        },this)
+                 item[val]=this.attr(val);
+            },$(this))
+            collection.add(item)
+        })
     },
 
-    events: function(){
+    events: {
 
     },
+    toggle: function (current,next){
+        var coll=this.collection;
+        if(!_.isEmpty(current)){
+            coll.get(current).trigger('close');
+        }
+        coll.get(next).trigger('open');
 
-    render :function(){
-
-        this.renderList(elem,this.elem);
     },
-    renderList: function(item){
+    render: function(section){
+       this.toggle(this.visibleSection,section)
+       this.visibleSection=section;
+
+    },
+    preRender :function(){
+        this.initList(this.elem);
+    },
+    initList: function(item){
         var coll = this.collection;
         if(!_.isEmpty(coll)&&!_.isEmpty(coll.models))
             coll.each(function(num,i){
-                var    view = new item({model: num});
-                view.render();
+                var view = new item({model: num, el :$('#'+num.id).get(0)});
             },this);
         else
         {
-
-            var view = new item({model: new Backbone.Models()});
+            var view = new item({model: new Backbone.Model()});
             view.render_not_item();
-
         }
     },
 
-    elem : Backbone.View.extend({
-        initialize: function(){
-
-        },
-        events: function(){
-
-        },
-        render :function(){
-
-        },
-        render_not_item : function(){
-
-        },
-        renderList: function(){
-
-        }
-    })
+    elem : app.Views.sectionApp
 
 
 });
