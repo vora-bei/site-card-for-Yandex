@@ -13,8 +13,8 @@ app.Routers.index = Backbone.Router.extend({
 
     routes: {
         "":        "resume",
-        "resume/:section":        "resume",
-        "resume/:section/p:subsection": "resume",
+        ":section":        "resume",
+        ":section/p:subsection": "resume",
         "": "resume"   // #search/kiwis/p7
         },
 
