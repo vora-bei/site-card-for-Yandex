@@ -8,19 +8,20 @@
 app.Routers.index = Backbone.Router.extend({
 
     initialize: function(){
-        this.app = new app.Views.mainApp();
+        this.app = new app.Views.mainApp({el:$('.content').get(0)});
     },
 
     routes: {
-        "help":                 "help",    // #help
-        "resume/":        "resume",
-        "resume/:section/p:subsection": "resume",
+        "":        "resume",
+        ":section":        "resume",
+        ":section/p:subsection": "resume",
         "": "resume"   // #search/kiwis/p7
         },
 
     resume: function(section, subsection) {
-        section= section?section:0;
+        section= section?section:'general';
         subsection= subsection?subsection:0;
+        this.app.render(section)
     }
 
 });

@@ -15,4 +15,4 @@ var app={
 $(document).ready(function(){
     new app.Routers.index();
     Backbone.history.start()
-})
+});
