@@ -8,7 +8,24 @@
 app.Routers.index = Backbone.Router.extend({
 
     initialize: function(){
-        this.app = new app.Views.mainApp({el:$('.content').get(0)});
+        this.app = new app.Views.mainApp({
+                                    apps:{
+                                             leftMenu : {
+                                                            app: app.Views.leftMenu,
+                                                            elements: $('#sideLeft'),
+                                                            options:{}
+                                                        },
+                                             accordion : {
+                                                             app: app.Views.accordionApp,
+                                                             elements: $('.accordion'),
+                                                             options:{
+                                                                        head : 'h3',
+                                                                        body : 'div'
+                                                                     }
+                                                        }
+                                         },
+                                    el:$('#middle').get(0)
+                                });
     },
 
     routes: {
@@ -22,6 +39,7 @@ app.Routers.index = Backbone.Router.extend({
         section= section?section:'general';
         subsection= subsection?subsection:0;
         this.app.render(section)
+        return false;
     }
 
 });

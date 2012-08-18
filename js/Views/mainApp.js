@@ -1,24 +1,19 @@
-/**
- * Created with JetBrains PhpStorm.
- * User: Администратор
- * Date: 14.08.12
- * Time: 23:43
- * To change this template use File | Settings | File Templates.
- */
 app.Views.mainApp=Backbone.View.extend({
     templates: '',
     itemCollection :{
         selector : '.section',
         attrs : ['id','name']
     },
+    apps: {},
 
     visibleSection: '',//Открытая Section
 
     collectionClass : app.Collections.section,
 
     initialize: function(options){
+        this.apps=options.apps;
         this.initCollection()
-        this.preRender()
+        this.preRender();
     },
 
     //инициализация коллекции
@@ -43,39 +38,42 @@ app.Views.mainApp=Backbone.View.extend({
         })
     },
 
-    events: {
 
-    },
-    toggle: function (current,next){
-        var coll=this.collection;
-        if(!_.isEmpty(current)){
-            coll.get(current).trigger('close');
-        }
-        coll.get(next).trigger('open');
-
-    },
-    render: function(section){
-       this.toggle(this.visibleSection,section)
-       this.visibleSection=section;
-
-    },
     preRender :function(){
         this.initList(this.elem);
+        this.appsRender();
     },
+    appsRender :function(){
+        _.each(this.apps,function(val,name){
+            var parentApp=this;
+            this.$(val.elements).each(function(i){
+                if(_.isUndefined(parentApp['apps_'+name]))
+                    parentApp['apps_'+name]=[];
+                parentApp['apps_'+name][i]=new val.app(_.extend(val.options,{parentApp:parentApp,el:this}));
+            })
+        },this)
+    },
+
     initList: function(item){
         var coll = this.collection;
         if(!_.isEmpty(coll)&&!_.isEmpty(coll.models))
             coll.each(function(num,i){
                 var view = new item({model: num, el :$('#'+num.id).get(0)});
             },this);
-        else
-        {
-            var view = new item({model: new Backbone.Model()});
-            view.render_not_item();
-        }
     },
 
+    toggle: function (current,next){
+        var coll=this.collection;
+        if(!_.isEmpty(current)){
+            coll.get(current).trigger('close');
+        }
+           coll.get(next).trigger('open');
+    },
+
+    render: function(section){
+       this.toggle(this.visibleSection,section)
+       this.visibleSection=section;
+       this.trigger('navigate')
+    },
     elem : app.Views.sectionApp
-
-
 });

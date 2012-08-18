@@ -3215,6 +3215,11 @@ input[type="submit"].btn.btn-mini {
   background-color: #eeeeee;
 }
 
+.nav-tabs.nav-stacked > li > a.current {
+    text-decoration: none;
+    background-color: #eeeeee;
+}
+
 .nav > .pull-right {
   float: right;
 }
@@ -3385,6 +3390,7 @@ input[type="submit"].btn.btn-mini {
   z-index: 2;
   border-color: #ddd;
 }
+
 
 .nav-pills.nav-stacked > li > a {
   margin-bottom: 3px;
