@@ -29,7 +29,7 @@
 <div id="wrapper">
 
 	<div id="header">
-		<strong>Header:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tortor. Praesent dictum, libero ut tempus dictum, neque eros elementum mauris, quis mollis arcu velit ac diam. Etiam neque. Quisque nec turpis. Aliquam arcu nulla, dictum et, lacinia a, mollis in, ante. Sed eu felis in elit tempor venenatis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut ultricies porttitor purus. Proin non tellus at ligula fringilla tristique. Fusce vehicula quam. Curabitur vel tortor vitae pede imperdiet ultrices. Sed tortor.
+        <h1>Тестовое задание</h1>
 	</div><!-- #header-->
 
 	<div id="middle">
@@ -167,57 +167,461 @@
                         </tbody>
                     </table>
                     </div>
+
+
+
+
+
+
                     <div id='technical' name="Технические вопросы" class="section">
                         <div class="demo">
 
                             <div class="accordion">
+                            <button  class="btn btn-primary js-toggle"><i class="icon-eye-close"></i></button>
                               <h2 class="middle">Технические вопросы</h2>
-                                <h3><a href="#">Section 1</a></h3>
+                              <h3>
+                                  <a href="#">
+                                      Вопрос №1
+                                  </a>
+                              </h3>
+                              <div>
+                                  <p>
+                                  <h4>
+                                       Перечислите известные вам инструменты и приёмы для отладки кода в разных браузерах.
+                                  </h4>
+                                  </p>
+                                  <p>
+Дебагеры различных браузеров(Firefox :Firebug, IE9:  режим совместимости + Developer Tools.
+                                      Opera (версия 9.5 и выше): Opera Dragonfly
+                                      У Safari : Drosera JS и DOM viewer  WebInspector.
+                                  </p>
+                                  <p>
+                                      Покрытие кода тестами
+                                  </p>
+
+                                  <p>
+                                      Автоматизированное тестирование:
+                                        Selenium - это java-программа, которая умеет запускать браузер и делать в нем различные действия типа клика на кнопку,
+                                                поиска элемента, ожидания загрузки страницы.
+
+                                  </p>
+
+                              </div>
+                              <h3>
+                                  <a href="#">
+                                      Вопрос №2
+                                  </a>
+                              </h3>
+                              <div>
+                                  <p>
+                                  <h4>
+                                         Опишите своими словами, что происходит в браузерах при клике на ссылку yandex.ru (полнота ответа — на ваше усмотрение).                              </h4>
+                                  </p>
+                                  <p>
+                                       <pre>
+find ./ -type f -name "*школа яндекса*.txt" -exec grep -i -H "main"  {} \;
+
+find ./ -type f -name "*школа яндекса*.txt" | xargs  grep -i -H "main";
+                                       </pre>
+                                  </p>
+                              </div>
+                              <h3>
+                                  <a href="#">
+                                      Вопрос №3
+                                  </a>
+                              </h3>
+                              <div>
+                                  <p>
+                                  <h4>
+                                      Предположим, что мы представляем автосалон по продаже японских и немецких автомобилей. У нас есть базовые классы и примеры их использования. Допишите недостающий код.
+                                  </h4>
+                                  </p>
+                                  <p>
+                                       <pre>
+
+/**
+ * Создает экземпляр Машины
+ * @this {Car}
+ * @param {string} manufacturer Производитель
+ * @param {string} model Модель
+ * @param {number} year Год производство
+ */
+
+
+function Car(manufacturer, model, year) {
+
+    this.manufacturer = manufacturer.toString();
+    this.model = model.toString();
+    setYear(this,year)
+
+    function setYear(self,year){
+        var time = new Date();
+        self.year = +year? year: time.getFullYear()
+    }
+
+    this.getInfo=function(){
+       return this.toString();
+    }
+    this.getDetailedInfo = function(){
+        return " Производитель: "+this.manufacturer+".Модель: "+this.model+". Год: "+this.year;
+    }
+    this.getCountry=function() {
+    switch (this.manufacturer.toLowerCase()) {
+        case 'bmw':
+	case 'audi':
+            return 'Germany';
+
+        case 'toyota':
+            return 'Japan';
+	}
+}
+    this.toString=function() {
+        return this.manufacturer+" "+this.model+" "+this.year;
+	}
+
+
+}
+    var bmw = new Car("BMW", "X5", 2010),
+    audi = new Car("Audi", "Q5", 2012),
+    toyota = new Car("Toyota", "Camry");
+// @TODO: если конструктор вызывается без указания текущего года, то подставлять текущий
+// @TODO: реализовать методы вывода информации о машине:
+ console.log('Car: ' + bmw); // Car: BMW X5 2010
+ console.log(bmw.getInfo()); // BMW X5 2010
+ console.log(bmw.getDetailedInfo()); // Производитель: BMW. Модель: X5. Год: 2010
+
+
+
+
+
+
+
+
+
+/**
+ * Создает экземпляр Автосалона
+ * @this {CarDealer}
+ * @param {string} name Название автосалона
+ */
+
+function CarDealer(name) {
+    this.name = name;
+    this.cars = [];
+    this.prices={};
+    this.setPrice=function(car,price){
+	for(var i=0;i&lt;this.cars.length;i++)
+		if(this.cars[i].getInfo()==car){}
+	}
+
+
+    this.add=function(){
+	    for(var i=0;i&lt;arguments.length;i++) {
+	        if(arguments[i] instanceof Car)
+			this.cars.push(arguments[i])
+		else console.log('Объект должен быть класса Car')
+
+	    }
+            return this;
+    }
+
+
+    this.setPrice=function(car, price){
+	var formatPrice = /^([€,¥])(\d*)$/;
+	var formatCar=/^([^\b]+)\b([^\b]+)\b(\d+)$/;
+	if(formatPrice.test(price)&&formatCar.test(car)){
+		var priceArray = formatPrice.exec(price);
+
+		this.prices[car]={value:priceArray[2] , currency: priceArray[1]};
+	}
+	else
+		console.log('format error')
+
+
+	return this;
+    }
+    this.getPrice=function(car){
+        return this.prices[car.toString()]?this.prices[car.toString()] : {value:undefined , currency: undefined};;
+    }
+
+    this.list=function(){
+	    return this.cars.join(', ');
+	}
+    this.listByCountry=function(country){
+        var sortList=[];
+        for(var i=0;i&lt;this.cars.length;i++) {
+                if(this.cars[i].getCountry()==country)
+                sortList.push(this.cars[i])
+            }
+        return sortList.join(', ');
+	}
+
+    this.listRubPrice=function(country){
+        var sortList=[];
+        for(var i=0;i&lt;this.cars.length;i++) {
+                var PriceRub=currencyConverter(this.getPrice(this.cars[i]));
+                var printPriceRub=PriceRub?": Цена "+PriceRub+'Р': ': Модель отсутствует в прайсе';
+                sortList.push(this.cars[i]+" "+printPriceRub);
+        }
+        return sortList.join(', ');
+    }
+
+
+}
+
+function  currencyConverter(price){//достаточно универсальная функция должна быть доступна в глобальной области видимости
+    switch (price.currency) {
+        case '€':
+            return price.value*40;
+
+        case '¥':
+            return price.value*30;
+        default : return undefined;
+    }
+}
+
+
+
+
+
+
+var yandex = new CarDealer('Яндекс.Авто');
+
+
+// @TODO: реализовать метод добавления машин в автосалон. Предусмотреть возможность добавления одной машины, нескольких машин.
+yandex
+    .add(toyota)
+    .add(bmw, audi);
+
+// @TODO: реализовать метод установки цены на машину
+/**
+ * Установить цену на машину
+ * @param {string} car идентификатор машины
+ * @param {string} price стоимость
+ */
+// идентификатор машины составляется следующим образом "производитель модель год"
+// стоимость машины может быть задана в двух валютах: йена и евро.
+yandex
+   .setPrice('BMW X5 2010', '€2000')
+   .setPrice('Audi Q5 2012', '€3000')
+   .setPrice('Toyota Camry 2012', '¥3000');
+
+// @TODO: реализовать вывод списка автомобилей в продаже, с фильтрацией по стране производителю, используя метод getCountry:
+
+console.log(yandex.list()); //BMW X5 2010, Audi Q5 2012, Toyota Camry 2012
+console.log(yandex.listByCountry('Germany')); //BMW X5 2010, Audi Q5 2012
+
+// @TODO: бонус! выводить список машин с ценой в рублях.
+
+ console.log(yandex.listRubPrice());
+                                       </pre>
+                                  </p>
+                              </div>
+                                <h3>
+                                    <a href="#">
+                                        Вопрос №4
+                                    </a>
+                                </h3>
                                 <div>
                                     <p>
-                                        Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-                                        ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-                                        amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-                                        odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+                                        <h4>
+                                            Найдите все текстовые файлы (*.txt), в имени которых содержится «yandex», а в содержимом — «школа разработки интерфейсов».
+                                        </h4>
                                     </p>
+                                   <p>
+                                       <pre>
+find ./ -type f -name "*школа яндекса*.txt" -exec grep -i -H "main"  {} \;
+
+find ./ -type f -name "*школа яндекса*.txt" | xargs  grep -i -H "main";
+                                       </pre>
+                                   </p>
                                 </div>
-                                <h3><a href="#">Section 2</a></h3>
+                                <h3>
+                                    <a href="#">
+                                        Вопрос №5
+                                    </a>
+                                </h3>
                                 <div>
                                     <p>
-                                        Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-                                        purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-                                        velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-                                        suscipit faucibus urna.
-                                    </p>
-                                </div>
-                                <h3><a href="#">Section 3</a></h3>
-                                <div>
-                                    <p>
-                                        Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-                                        Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
-                                        ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
-                                        lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-                                    </p>
-                                    <ul>
-                                        <li>List item one</li>
-                                        <li>List item two</li>
-                                        <li>List item three</li>
-                                    </ul>
-                                </div>
-                                <h3><a href="#">Section 4</a></h3>
-                                <div>
-                                    <p>
-                                        Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-                                        et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-                                        faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-                                        mauris vel est.
+                                        <h4>
+                                            Дана программа, реализованная одновременно на Bash, Python и Perl. Программа принимает произвольное количество аргументов и печатает их количество. Нужно добавить опцию -v для verbose-режима, в котором дополнительно выводится значение каждого из аргументов.
+                                        </h4>
                                     </p>
                                     <p>
-                                        Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-                                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                                        inceptos himenaeos.
+                                        <pre>
+Bash
+
+#!/usr/bin/env bash
+
+usage() {
+cat << EOF
+Usage: printargs.sh [OPTIONS] [ARGUMENTS]
+  Print the number of arguments.
+
+OPTIONS:
+  -h      print help message
+  -m MSG  custom message
+
+Examples:
+  printargs.sh a b c
+  printargs.sh -m 'Arguments count: ' a b c
+  printargs.sh -h
+
+EOF
+}
+
+while getopts “hvm:” OPTION # TODO: add '-v' option for verbose mode
+do
+    case $OPTION in
+        h)
+            usage
+            exit 1
+            shift;;
+        m)
+            MESSAGE=$OPTARG
+            shift;shift;;
+        v)
+            ISVERBOSE=1
+            shift;;
+    esac
+done
+
+COUNT=0
+
+for ARG in $@; do
+    # TODO: add '-v' option for verbose mode
+    # and print each argument
+    if [[ $ISVERBOSE == 1 ]]; then
+	   echo $ARG
+    fi
+    let COUNT+=1
+done
+
+if [[ "$MESSAGE" != "" ]]; then
+    echo $MESSAGE
+fi
+
+
+
+echo $COUNT
+
+                                        </pre>
+                                    </p>
+                                    <p>
+                                        <pre>
+ Python
+
+#!/usr/bin/env python
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Print the number of arguments.')
+parser.add_argument('arguments', metavar='ARG', type=str, nargs='*', help='some arguments')
+parser.add_argument('-m', dest='message', default='', help='custom message')
+parser.add_argument('-v', dest='verbose', default='', help='verbose mode')
+# TODO: add '-v' option for verbose mode
+
+args = parser.parse_args()
+
+count = 0
+
+for a in args.arguments:
+	if args.verbose != ''
+		print(a)
+    # TODO: add '-v' option for verbose mode
+    # and print each argument
+    count += 1
+
+if args.message != '':
+    print(args.message)
+
+print(count)
+                                        </pre>
+                                    </p>
+                                    <p>
+                                        <pre>
+Perl
+
+#!/usr/bin/env perl
+
+use strict;
+use Getopt::Long;
+use Pod::Usage;
+
+my $help;
+my $message = '';
+my $verbose;
+
+@ARGV and GetOptions(
+    "h" => \$help,
+    "m:s" => \$message,
+	"v" => \$verbose
+    # TODO: add '-v' option for verbose mode
+) or pod2usage(1);
+pod2usage(-verbose => 2, -exitval => 2) if $help;
+
+my $count = 0;
+
+foreach $arg(@ARGV) {
+    # TODO: add '-v' option for verbose mode
+    # and print each argument
+	print($arg . "\n") if $verbose;
+    $count++;
+}
+
+if($message ne "") {
+    print($message . "\n");
+}
+
+print($count . "\n");
+
+__END__
+
+=head1 NAME
+
+    printargs.pl - Print the number of arguments.
+
+=head1 SYNOPSIS
+
+    printargs.pl [options] [arguments]
+
+=head1 OPTIONS
+    '-v' option for verbose mode
+
+    -h      Show help message.
+
+    -m MSG  Specify a custom message.
+
+
+=head1 EXAMPLE
+
+    printargs.sh a b c
+
+    printargs.sh -m 'Arguments count: ' a b c
+
+    printargs.sh -h
+
+                                        </pre>
                                     </p>
                                 </div>
+                              <h3>
+                                  <a href="#">
+                                      Вопрос №6
+                                  </a>
+                              </h3>
+                              <div>
+                                  <p>
+                                  <h4>
+                                     Расскажите, в каком объёме и при каких обстоятельствах вы изучали следующие темы: языки программирования (императивные/декларативные, разные системы типов), структуры (классы, структуры данных, примитивные типы), парадигмы (события, ООП, параллельность/асинхронность, кеширование), алгоритмы (парсинг, сортировка, поиск), паттерны.
+                                 </h4>
+                                  </p>
+                                  <p>
+                                       <pre>
+find ./ -type f -name "*школа яндекса*.txt" -exec grep -i -H "main"  {} \;
+
+find ./ -type f -name "*школа яндекса*.txt" | xargs  grep -i -H "main";
+                                       </pre>
+                                  </p>
+                              </div>
                             </div>
 
                         </div><!-- End demo -->
@@ -244,8 +648,8 @@
 
 
 </div><!-- #wrapper -->
-<footer id="footer">
+<div id="footer">
     <strong>Footer:</strong> Mus elit Morbi mus enim lacus at quis Nam eget morbi. Et semper urna urna non at cursus dolor vestibulum neque enim. Tellus interdum at laoreet laoreet lacinia lacinia sed Quisque justo quis. Hendrerit scelerisque lorem elit orci tempor tincidunt enim Phasellus dignissim tincidunt. Nunc vel et Sed nisl Vestibulum odio montes Aliquam volutpat pellentesque. Ut pede sagittis et quis nunc gravida porttitor ligula.
-</footer>
+</div>
 </body>
 </html>
