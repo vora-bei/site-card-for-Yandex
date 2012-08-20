@@ -74,10 +74,13 @@ input {
 /* Header
 -----------------------------------------------------------------------------*/
 #header {
-    height: 150px;
+    height: 90px;
     background: #FFE680;
+    border-radius: 0px 0px 5px 5px;
 }
-
+.header-left{
+    padding-left: 50px;
+}
 
 /* Middle
 -----------------------------------------------------------------------------*/
@@ -95,7 +98,7 @@ input {
     visibility: hidden;
     height: 0;
 }
-#container {
+.container_content {
     width: 100%;
     float: left;
     overflow: hidden;
@@ -110,20 +113,24 @@ input {
 
 /* Sidebar Left
 -----------------------------------------------------------------------------*/
-#sideLeft {
+.sideBar {
     float: left;
     width: 250px;
     margin-left: -100%;
     position: relative;
 }
+.accordion>h3 {
+    border-bottom: 1px dashed
 
+}
 
 /* Footer
 -----------------------------------------------------------------------------*/
 #footer {
     width: 1000px;
-    margin: -100px auto 0;
-    height: 100px;
+    margin: -20px auto 0;
+    height: 20px;
+    border-radius: 5px 5px 0px 0px;
     background: #BFF08E;
     position: relative;
 }

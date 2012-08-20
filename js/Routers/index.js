@@ -32,7 +32,7 @@ app.Routers.index = Backbone.Router.extend({
         "":        "resume",
         ":section":        "resume",
         ":section/p:subsection": "resume",
-        "": "resume"   // #search/kiwis/p7
+        "": "resume"
         },
 
     resume: function(section, subsection) {
