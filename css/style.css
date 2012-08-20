@@ -54,7 +54,8 @@ a:hover {
     text-decoration: none;
 }
 p {
-    margin: 0 0 18px
+    margin: 0 0 18px;
+    text-indent: 25px;
 }
 img {
     border: none;
@@ -74,9 +75,15 @@ input {
 /* Header
 -----------------------------------------------------------------------------*/
 #header {
+
     height: 90px;
     background: #FFE680;
     border-radius: 0px 0px 5px 5px;
+
+}
+#header h1 {
+
+    padding-left: 390px;
 }
 .header-left{
     padding-left: 50px;
@@ -128,9 +135,15 @@ input {
 -----------------------------------------------------------------------------*/
 #footer {
     width: 1000px;
+    text-align: center;
+
     margin: -20px auto 0;
     height: 20px;
     border-radius: 5px 5px 0px 0px;
     background: #BFF08E;
     position: relative;
+}
+#footer div{
+    font: 11px/18px Arial, Tahoma, Verdana, sans-serif;
+
 }
