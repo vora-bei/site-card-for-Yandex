@@ -29,15 +29,12 @@ app.Routers.index = Backbone.Router.extend({
     },
 
     routes: {
-        "":        "resume",
         ":section":        "resume",
-        ":section/p:subsection": "resume",
         "": "resume"
         },
 
-    resume: function(section, subsection) {
+    resume: function(section) {
         section= section?section:'general';
-        subsection= subsection?subsection:0;
         this.app.render(section)
         return false;
     }
