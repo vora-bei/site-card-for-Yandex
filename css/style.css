@@ -76,14 +76,14 @@ input {
 -----------------------------------------------------------------------------*/
 #header {
 
-    height: 90px;
+    height: 60px;
     background: #FFE680;
     border-radius: 0px 0px 5px 5px;
 
 }
 #header h1 {
-
-    padding-left: 390px;
+    margin-top: 10px;
+    padding-left: 270px;
 }
 .header-left{
     padding-left: 50px;
